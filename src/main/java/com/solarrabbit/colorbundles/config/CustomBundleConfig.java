@@ -36,45 +36,45 @@ public class CustomBundleConfig {
      */
     public static final String DEFAULT_NAME_KEY = "default-name";
     private final ConfigurationSection config;
-
+    
     public CustomBundleConfig(ConfigurationSection config) {
         this.config = config;
     }
-
+    
     public ItemStack getBundle() {
         ItemStack item = new ItemStack(Material.BUNDLE);
         ItemMeta meta = item.getItemMeta();
-
+        
         int modelData = this.getCustomModelData();
         if (modelData != 0)
             meta.setCustomModelData(modelData);
-
+        
         String name = this.getName();
         if (name != null)
             meta.setDisplayName(
-                    ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', name));
-
+                ChatColor.WHITE + ChatColor.translateAlternateColorCodes('&', name));
+        
         PersistentDataContainer prc = meta.getPersistentDataContainer();
         NamespacedKey nsk = new NamespacedKey(JavaPlugin.getPlugin(ColorBundles.class), DEFAULT_NAME_KEY);
         prc.set(nsk, PersistentDataType.STRING, name);
-
+        
         item.setItemMeta(meta);
         return item;
     }
-
+    
     public Material getDye() {
         String materialName = this.config.getString("dye", null);
         return materialName == null ? null : Material.matchMaterial(materialName);
     }
-
+    
     public String getKey() {
         return config.getName();
     }
-
+    
     private String getName() {
         return this.config.getString("name", null);
     }
-
+    
     /**
      * Returns the model data set for this model in the configurations, or
      * {@code 0} if it is not set.

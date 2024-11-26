@@ -62,20 +62,16 @@ public final class ColorBundles extends JavaPlugin {
                 console.sendMessage(
                         ChatColor.GOLD + "[ColorBundles] " + pluginName
                                 + " cannot be found! Using default loader instead...");
-            else
-                switch (pluginName) {
-                    case "ItemsAdder":
-                        console.sendMessage(
-                                ChatColor.AQUA + "[ColorBundles] " + pluginName
-                                        + " detected! Waiting for ItemsAdder to load items...");
-                        loader = new ItemsAdderCustomRecipeLoader(this);
-                        break;
-                    default:
-                        console.sendMessage(
-                                ChatColor.AQUA + "[ColorBundles] " + pluginName
-                                        + " is not supported! Using default loader instead...");
-                        break;
-                }
+            else if ("ItemsAdder".equals(pluginName)) {
+                console.sendMessage(
+                    ChatColor.AQUA + "[ColorBundles] " + pluginName
+                        + " detected! Waiting for ItemsAdder to load items...");
+                loader = new ItemsAdderCustomRecipeLoader(this);
+            } else {
+                console.sendMessage(
+                    ChatColor.AQUA + "[ColorBundles] " + pluginName
+                        + " is not supported! Using default loader instead...");
+            }
         }
 
         loader.loadRecipes();
