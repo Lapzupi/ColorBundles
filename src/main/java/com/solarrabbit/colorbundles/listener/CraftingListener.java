@@ -40,7 +40,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import dev.lone.itemsadder.api.CustomStack;
 
 public class CraftingListener implements Listener {
-    private ColorBundles plugin;
+    private final ColorBundles plugin;
 
     public CraftingListener(ColorBundles plugin) {
         this.plugin = plugin;
